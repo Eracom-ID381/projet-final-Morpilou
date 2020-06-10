@@ -6,6 +6,7 @@ let platform = {
 var GRAVITY = 2;
 var JUMP = 30;
 var nbrJump = 0;
+var left, right;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -23,7 +24,6 @@ function setup() {
 
 function draw() {
   background(248, 29, 15);
-  // characterSprite.addSpeed(GRAVITY, 90);
   characterSprite.velocity.y += GRAVITY;
 
   if (characterSprite.collide(boxSprite)) {
@@ -31,18 +31,40 @@ function draw() {
     nbrJump = 0;
   }
 
-  //keyDown returns true for a cycle if the key was just pressed
-  //during this cycle. Useful to capture instant events in the draw cycle
-  //without moving game logic to the mousePressed() function
-  //mouseWentDown works the same way with mouse input
   if (keyWentDown('space')) {
     nbrJump += 1;
     if (nbrJump < 3) {
       characterSprite.velocity.y = -JUMP;
     }
   }
-  console.log(characterSprite.collide(boxSprite));
+
+  moveCharacter(left, -20);
+  moveCharacter(right, 20);
   drawSprites();
+
+}
+
+function moveCharacter(_key, _x) {
+  if (_key == true) {
+    characterSprite.position.x += _x;
+  }
+}
+
+function keyPressed() {
+  truefalse(true);
+}
+
+function keyReleased() {
+  truefalse(false);
+}
+
+function truefalse(value) {
+  if (keyCode == '65') {
+    left = value;
+  }
+  if (keyCode == '68') {
+    right = value;
+  }
 
 }
 
